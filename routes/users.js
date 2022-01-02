@@ -1,13 +1,13 @@
 var express = require("express")
 var router = express.Router()
 
+const { getParams } = require("../utils/params")
+
 const db = require("../utils/db.js")
-const url = require("url")
 
 /* GET users listing. */
-router.get("/userList", function (req, res, next) {
-  let params = url.parse(req.url).pathname
-  console.log("params", params)
+router.post("/login", function (req, res, next) {
+  let params = getParams(req)
 
   // 1、创建连接
   let connect = db.getConnection()
@@ -16,21 +16,26 @@ router.get("/userList", function (req, res, next) {
   connect.connect()
 
   // 3、准备sql语句
-  let arr = []
-  let sql = " select * from love_diary_user"
+  let arr = [params.username, params.password]
+  let sql =
+    " select * from love_diary_user u where u.username=? and password=? "
 
   // 4、执行数据库的查询
   connect.query(sql, arr, async function (err, results) {
-    console.log(sql)
     let obj = {
       code: 200,
-      data: null,
+      data: results,
+      msg: "",
     }
     if (err) {
       obj.code = 500
-      obj.data = err.message
+      obj.msg = err.message
+    } else if (!results || results.length === 0) {
+      obj.code = 500
+      obj.msg = "用户名或密码错误"
     } else {
-      obj.data = results
+      obj.code = 200
+      obj.msg = "登录成功"
     }
     res.send(obj)
   })
