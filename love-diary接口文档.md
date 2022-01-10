@@ -1,6 +1,6 @@
 # love-diary 接口文档
 
-- 接口基准地址：`http://127.0.0.1:9998/`
+- 接口基准地址：`http://127.0.0.1:9999/lovediary`
 - 服务端已开启 CORS 跨域支持
 - API V1 认证统一使用 Token 认证
 - <!-- - 需要授权的 API ，必须在请求头中使用 `Authorization` 字段提供 `token` 令牌 -->
