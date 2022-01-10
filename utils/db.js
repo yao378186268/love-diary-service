@@ -13,7 +13,7 @@ function getConnection() {
       password: '这里是数据库密码',
       database: "这里是数据库名称"
   })
-  
+ 
   return connect
 }
 
