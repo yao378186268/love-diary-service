@@ -1,4 +1,5 @@
 const { getParams } = require("../../utils/params")
+const vertoken = require('../../token/token')
 
 const db = require("../../utils/db.js")
 
@@ -25,10 +26,15 @@ function login(req, res, next) {
     if (err) {
       obj.code = 500
       obj.msg = err.message
-    } else if (!results || results.length === 0) {
+      return res.send(obj)
+    }
+    if (!results || results.length === 0) {
       obj.code = 500
       obj.msg = "用户名或密码错误"
+      return res.send(obj)
     }
+    let token = await vertoken.setToken(results[0].username, results[0].password)
+    obj.token = token
     res.send(obj)
   })
 

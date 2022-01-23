@@ -5,7 +5,6 @@
  * @returns {Object} 请求参数对象
  */
 function getParams(req) {
-  console.log(req)
   let body = req.body
   // 如果body中有参数，post请求，返回body
   if (Object.keys(body).length > 0) {
