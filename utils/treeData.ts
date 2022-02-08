@@ -1,6 +1,6 @@
 // 处理树形数据
 
-function treeData(results) {
+export function treeData(results) {
   let arr = []
   if (!results.length) {
     return arr
@@ -19,4 +19,3 @@ function treeData(results) {
   return arr
 }
 
-module.exports = treeData

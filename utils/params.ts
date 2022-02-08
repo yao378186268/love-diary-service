@@ -4,7 +4,7 @@
  * @param {IncomingMessage} req 请求对象
  * @returns {Object} 请求参数对象
  */
-function getParams(req) {
+ export function getParams(req) {
   let body = req.body
   // 如果body中有参数，post请求，返回body
   if (Object.keys(body).length > 0) {
@@ -17,4 +17,3 @@ function getParams(req) {
   }
   return req.params
 }
-exports.getParams = getParams
