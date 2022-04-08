@@ -13,5 +13,8 @@ router.get('/menu', menu);
 let { picture } = require('./picture/picture')
 router.get('/picture', picture)
 
+// 小点点视频接口
+let { video } = require('./video/video')
+router.get('/video', video)
 
 module.exports = router;
